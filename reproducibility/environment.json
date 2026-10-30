@@ -1,0 +1,22 @@
+{
+  "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "torch": "2.11.0+cu128",
+    "torchvision": "0.26.0+cu128",
+    "facenet-pytorch": "2.6.0",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "matplotlib": "3.10.0",
+    "Pillow": "11.3.0",
+    "kagglehub": "0.3.13",
+    "tqdm": "4.67.1"
+  },
+  "cuda_available": true,
+  "pytorch_cuda_version": "12.8",
+  "cudnn_version": 91900,
+  "cudnn_benchmark": false,
+  "cudnn_deterministic": false,
+  "deterministic_algorithms_enabled": false,
+  "gpu": "NVIDIA GeForce RTX 5060 Ti"
+}

@@ -1,0 +1,98 @@
+{
+  "dataset": {
+    "handle": "yakhyokhuja/webface-112x112",
+    "version": 1,
+    "image_root_within_download": "webface_112x112",
+    "identities": 20,
+    "images_per_identity": 50,
+    "selection_and_split_seed": 42
+  },
+  "model": {
+    "architecture": "InceptionResnetV1",
+    "pretrained_weights": "vggface2",
+    "embedding_dimensions": 512,
+    "trainable_backbone_layers": [
+      "block8",
+      "last_linear"
+    ],
+    "classification_head": {
+      "input_features": 512,
+      "output_classes": 20
+    },
+    "backbone_mode_during_training": "eval",
+    "batchnorm_running_statistics": "fixed",
+    "backbone_dropout": "disabled"
+  },
+  "preprocessing": {
+    "color": "RGB",
+    "resize": [
+      160,
+      160
+    ],
+    "interpolation": "bilinear",
+    "pixel_standardization": "(pixel - 127.5) / 128.0",
+    "augmentation": "none"
+  },
+  "training": {
+    "optimizer": "Adam",
+    "backbone_learning_rate": 1e-05,
+    "head_learning_rate": 0.001,
+    "adam_betas": [
+      0.9,
+      0.999
+    ],
+    "adam_epsilon": 1e-08,
+    "weight_decay": 0,
+    "loss": "CrossEntropyLoss",
+    "epochs": 10,
+    "batch_size": 32,
+    "num_workers": 0,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "clean_poisoned_initialization_matched_within_seed": true
+  },
+  "poisoning": {
+    "method": "targeted label flipping",
+    "attacker": "id_1658",
+    "victim": "id_6063",
+    "poison_count": 5,
+    "poison_selection_seed": 42,
+    "global_poison_fraction": 0.01,
+    "pair_selection": "Maximum cosine similarity between original pretrained training-image centroids among selected identities"
+  },
+  "verification": {
+    "template": "L2-normalized mean of enrollment embeddings",
+    "score": "cosine similarity",
+    "acceptance_rule": "similarity >= threshold",
+    "reference_threshold": "calibrated to <=1% clean validation FMR",
+    "attack_threshold": "highest threshold accepting >=90% of validation attacker probes",
+    "threshold_selection_partition": "validation",
+    "final_evaluation_partition": "test",
+    "eer_method": "average FAR and FRR at the empirical threshold minimizing their absolute difference"
+  },
+  "identity_to_label": {
+    "id_125": 0,
+    "id_1658": 1,
+    "id_1664": 2,
+    "id_2067": 3,
+    "id_2527": 4,
+    "id_2776": 5,
+    "id_2794": 6,
+    "id_2966": 7,
+    "id_3421": 8,
+    "id_3966": 9,
+    "id_5599": 10,
+    "id_5811": 11,
+    "id_5936": 12,
+    "id_6063": 13,
+    "id_6669": 14,
+    "id_800": 15,
+    "id_810": 16,
+    "id_9271": 17,
+    "id_9383": 18,
+    "id_9486": 19
+  }
+}
